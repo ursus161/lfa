@@ -1,8 +1,11 @@
-q0 q1 q2
+q0 q1 q2 q3
 a b
-q0 q0 a
-q0 q1 lambda
-q1 q1 b
-q1 q2 b
+q0 q1 a
+q0 q2 b
+q1 q1 a
+q1 q3 lambda
+q2 q3 b
+q3 q3 a
+q3 q3 b
 q0
-q2
+q3

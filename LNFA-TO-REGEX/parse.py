@@ -1,4 +1,3 @@
-import sys
 
 
 def parse_input(filename):
