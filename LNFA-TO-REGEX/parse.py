@@ -12,7 +12,11 @@ def parse_input(filename):
     states = lines[0].strip().split()
     alphabet = lines[1].strip().split()
 
-    i=2
+    i = 2
+
+    if lines[i].strip().isdigit(): #detectez linia cu nr de tranzitii
+        i += 1
+
     while i<len(lines):
 
         parts = lines[i].strip().split()
