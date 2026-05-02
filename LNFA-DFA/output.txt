@@ -1,0 +1,13 @@
+DFA echivalent:
+starile: [frozenset({'q0'}), frozenset({'q1'}), frozenset({'q2'}), frozenset({'q5', 'q3'}), frozenset({'q5', 'q4'}), frozenset()]
+alfabetul: ['a', 'b']
+functia de tranzitie: {frozenset({'q0'}): {'a': frozenset({'q1'}), 'b': frozenset({'q2'})}, frozenset({'q1'}): {'a': frozenset({'q5', 'q3'}), 'b': frozenset({'q5', 'q3'})}, frozenset({'q2'}): {'a': frozenset({'q5', 'q4'}), 'b': frozenset({'q5', 'q4'})}, frozenset({'q5', 'q3'}): {'a': frozenset(), 'b': frozenset()}, frozenset({'q5', 'q4'}): {'a': frozenset(), 'b': frozenset()}, frozenset(): {'a': frozenset(), 'b': frozenset()}}
+starea initiala: frozenset({'q0'})
+starile finale: [frozenset({'q5', 'q3'}), frozenset({'q5', 'q4'})]
+
+DFA minim:
+starile: ['M0', 'M1', 'M2', 'M3']
+alfabetul: ['a', 'b']
+functia de tranzitie: {'M0': {'a': 'M3', 'b': 'M3'}, 'M1': {'a': 'M0', 'b': 'M0'}, 'M2': {'a': 'M2', 'b': 'M2'}, 'M3': {'a': 'M2', 'b': 'M2'}}
+starea initiala: M1
+starile finale: ['M3']
