@@ -129,11 +129,34 @@ def minimize_dfa(dfa_states, alphabet, transition, init_state, final_states):
 
 
 def write_dfa(g, states, alphabet, transition, init_state, final_states):
-    g.write("starile: " + str(states) + '\n')
-    g.write("alfabetul: " + str(alphabet) + '\n')
-    g.write("functia de tranzitie: "+ str(transition) + '\n')
-    g.write("starea initiala: " + str(init_state) + '\n')
-    g.write("starile finale: " + str(final_states) + '\n')
+    # redenumesc daca sunt frozenset-uri
+    if states and isinstance(states[0], frozenset):
+        name = {s: 'D' + str(i) for i, s in enumerate(states)}
+        states_named = [name[s] for s in states]
+        init_named = name[init_state]
+        finals_named = [name[s] for s in final_states]
+        trans_named = {}
+        for src in states:
+            for sym in transition.get(src, {}):
+                dst = transition[src][sym]
+                if name[src] not in trans_named:
+                    trans_named[name[src]] = {}
+                trans_named[name[src]][sym] = name[dst]
+    else:
+        states_named = states
+        init_named = init_state
+        finals_named = final_states
+        trans_named = transition
+
+    g.write(' '.join(states_named) + '\n')
+    g.write(' '.join(alphabet) + '\n')
+    count = sum(len(trans_named[s]) for s in trans_named)
+    g.write(str(count) + '\n')
+    for src in trans_named:
+        for sym in sorted(trans_named[src]):
+            g.write(f'{src} {trans_named[src][sym]} {sym}\n')
+    g.write(init_named + '\n')
+    g.write(' '.join(finals_named) + '\n')
     
  
 if __name__ == '__main__':
